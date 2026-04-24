@@ -9,6 +9,7 @@ const WEBHOOK_URLS = [
 const PORT = process.env.PORT || 3000;
 
 const IMAGES = [
+  https://cdn.discordapp.com/attachments/1489714617918951697/1497258820722753609/image.png?ex=69ecde70&is=69eb8cf0&hm=3777f1da839fef41b2f8703a1f7aad855a1a64ed53a24f24f1c8bd4ad6e8f7ea&
  ];
 
 let currentImageIndex = 0;
@@ -20,11 +21,17 @@ async function sendToWebhook(webhookUrl, imageUrl) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      username: "",
+      username: "GANGS CHALLENGE",
       embeds: [
         {
-          title: ",
-          description: `
+          title: "GANGS CHALLENGE"",
+          description: `GANGS WITH 15 to 20+ ACTIVE PLAYERS
+IF YOU GET 30 ACTIVE TODAY
+YOU WILL GET A £10 CAR AND STARTER PACK
+
+GANGS WITH 5 to 15+ ACTIVE PLAYERS
+ IF YOU GET 30 ACTIVE TODAY
+YOU WILL GET A £30 CAR AND 3x STARTER PACK
 **`,
           color: 16711680,
           image: {
