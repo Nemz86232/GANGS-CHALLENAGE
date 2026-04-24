@@ -9,7 +9,7 @@ const WEBHOOK_URLS = [
 const PORT = process.env.PORT || 3000;
 
 const IMAGES = [
-  "https://cdn.discordapp.com/attachments/1494029725881073771/1497263232916656198/content.png?ex=69ece28c&is=69eb910c&hm=dbe06f882809ca78c223e0d551dd8a2e0030957123b6efdb3e8442f9ae245be4&""
+  "https://cdn.discordapp.com/attachments/1494029725881073771/1497263232916656198/content.png?ex=69ece28c&is=69eb910c&hm=dbe06f882809ca78c223e0d551dd8a2e0030957123b6efdb3e8442f9ae245be4&"
  ];
 
 let currentImageIndex = 0;
