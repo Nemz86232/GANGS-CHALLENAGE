@@ -8,13 +8,10 @@ const WEBHOOK_URLS = [
 
 const PORT = process.env.PORT || 3000;
 
-const IMAGES = [
-  "https://cdn.discordapp.com/attachments/1494029725881073771/1497263232916656198/content.png?ex=69ece28c&is=69eb910c&hm=dbe06f882809ca78c223e0d551dd8a2e0030957123b6efdb3e8442f9ae245be4&"
- ];
+const IMAGE_URL =
+  "https://cdn.discordapp.com/attachments/1494029725881073771/1497263232916656198/content.png?ex=69ece28c&is=69eb910c&hm=dbe06f882809ca78c223e0d551dd8a2e0030957123b6efdb3e8442f9ae245be4&";
 
-let currentImageIndex = 0;
-
-async function sendToWebhook(webhookUrl, imageUrl) {
+async function sendToWebhook(webhookUrl) {
   const response = await fetch(webhookUrl, {
     method: "POST",
     headers: {
@@ -24,27 +21,24 @@ async function sendToWebhook(webhookUrl, imageUrl) {
       username: "GANGS CHALLENGE",
       embeds: [
         {
-          title: "GANGS CHALLENGE"",
-          description: `GANGS WITH 15 to 20+ ACTIVE PLAYERS
-IF YOU GET 30 ACTIVE TODAY
-YOU WILL GET A £10 CAR AND STARTER PACK
+          title: "🔥 GANGS CHALLENGE",
+          description: `**GANGS WITH 15–20+ ACTIVE PLAYERS**
+Get **30 active today** → £10 car + starter pack
 
-GANGS WITH 5 to 15+ ACTIVE PLAYERS
- IF YOU GET 30 ACTIVE TODAY
-YOU WILL GET A £30 CAR AND 3x STARTER PACK
+**GANGS WITH 5–15+ ACTIVE PLAYERS**
+Get **30 active today** → £30 car + 3x starter packs
 
-GANGS WITH 20 ACTIVE GET 3 VIPS AND 5 BATTLE PASS 
-AND CUSTOM DISCORD ROLE
+**20 ACTIVE**
+3 VIPs + 5 Battle Pass + custom Discord role
 
-GANGS WITH 25 ACTIVE GET 5 VIPS AND 5 BATTLE PASS
-AND CUSTOM DISCORD ROLE 
+**25 ACTIVE**
+5 VIPs + 5 Battle Pass + custom Discord role
 
-GANGS WITH 30 ACTIVE GET 7 VIPS AND 7 BATTLE PASS
-AND CUSTOM DISCORD ROLE
-**`,
+**30 ACTIVE**
+7 VIPs + 7 Battle Pass + custom Discord role`,
           color: 16711680,
           image: {
-            url: imageUrl
+            url: IMAGE_URL
           }
         }
       ]
@@ -58,23 +52,13 @@ AND CUSTOM DISCORD ROLE
 }
 
 async function sendWebhookMessage() {
-  try {
-    const imageUrl = IMAGES[currentImageIndex];
-
-    for (const webhookUrl of WEBHOOK_URLS) {
-      try {
-        await sendToWebhook(webhookUrl, imageUrl);
-        console.log(
-          `Message sent to webhook at ${new Date().toISOString()} using image ${currentImageIndex + 1}`
-        );
-      } catch (error) {
-        console.error(`Error sending to ${webhookUrl}:`, error.message);
-      }
+  for (const webhookUrl of WEBHOOK_URLS) {
+    try {
+      await sendToWebhook(webhookUrl);
+      console.log(`Message sent at ${new Date().toISOString()}`);
+    } catch (error) {
+      console.error(`Error sending webhook:`, error.message);
     }
-
-    currentImageIndex = (currentImageIndex + 1) % IMAGES.length;
-  } catch (error) {
-    console.error("Error sending webhook batch:", error.message);
   }
 }
 
@@ -103,11 +87,6 @@ function startScheduler() {
 async function start() {
   if (WEBHOOK_URLS.length === 0) {
     console.error("Missing WEBHOOK_URL_1 / WEBHOOK_URL_2 / WEBHOOK_URL_3");
-    process.exit(1);
-  }
-
-  if (!IMAGES.length) {
-    console.error("No images found in IMAGES array.");
     process.exit(1);
   }
 
