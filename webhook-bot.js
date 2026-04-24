@@ -80,7 +80,7 @@ function startScheduler() {
 
     setInterval(async () => {
       await sendWebhookMessage();
-    }, 90 * 60 * 1000);
+    }, 140 * 60 * 1000);
   }, delay);
 }
 
