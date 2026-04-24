@@ -1,0 +1,8 @@
+{
+  "name": "discord-webhook-hourly-warning",
+  "version": "1.0.0",
+  "main": "webhook-bot.js",
+  "scripts": {
+    "start": "node webhook-bot.js"
+  }
+}
